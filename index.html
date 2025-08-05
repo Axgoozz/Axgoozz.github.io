@@ -1,199 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Creative Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: var(--light);
-            overflow-x: hidden;
-        }
-        
-        .glowing-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), 
-                        radial-gradient(circle at 70% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
-            animation: pulse 15s ease infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-        
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .card {
-            backdrop-filter: blur(12px);
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary), #8b5cf6);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
-        }
-        
-        .btn-secondary {
-            background: linear-gradient(45deg, var(--secondary), #14b8a6);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
-        }
-        
-        .modal {
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Futuristic Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0f0;
+      --secondary: #00f7ff;
+      --dark: #121212;
+      --light: #f5f5f5;
+      --gray: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, 
+          rgba(15, 15, 15, 0.8) 0%, 
+          rgba(30, 30, 40, 0.9) 100%),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMiIGhlaWdodD0iMyIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+      z-index: -1;
+      animation: bgPulse 8s ease-in-out infinite alternate;
+      filter: contrast(120%) brightness(0.8);
+    }
+    
+    @keyframes bgPulse {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 3rem;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo span {
+      color: var(--light);
+    }
+    
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 3rem 0;
+    }
+    
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid transparent;
+      background: linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
+      box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.3),
+        0 0 40px rgba(0, 247, 255, 0.2);
+      margin-bottom: 2rem;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: brightness(1.05) contrast(1.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .profile-img:hover {
+      transform: scale(1.05) rotateZ(5deg);
+      box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.4),
+        0 0 60px rgba(0, 247, 255, 0.3);
+      filter: brightness(1.1) contrast(1.2) saturate(1.1);
+    }
+    
+    .profile-img::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(0, 255, 0, 0.1) 0%,
+        transparent 50%,
+        rgba(0, 247, 255, 0.1) 100%
+      );
+      transform: rotate(45deg) translate(-20%, 0);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { transform: rotate(45deg) translate(-20%, 0); }
+      100% { transform: rotate(45deg) translate(20%, 0); }
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .social-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-btn::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 5px 20px rgba(0, 255, 0, 0.4);
+      color: white;
+      animation: pulse 0.5s ease-out;
+    }
+    
+    @keyframes pulse {
+      0% { transform: translateY(-5px) scale(1); }
+      50% { transform: translateY(-5px) scale(1.2); }
+      100% { transform: translateY(-5px) scale(1.1); }
+    }
+    
+    .social-btn:hover::before {
+      opacity: 1;
+    }
+    
+    .social-btn i {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .contact-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      display: inline-block;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .contact-options {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .contact-btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+    }
+    
+    .email-btn {
+      background: linear-gradient(to right, #FF5F6D, #FFC371);
+      color: white;
+    }
+    
+    .contact-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .social-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .social-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 255, 0, 0.1);
+    }
+    
+    .social-name {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .social-desc {
+      opacity: 0.8;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .visit-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .visit-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        margin: 2rem 0;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      .social-links {
+        gap: 1rem;
+      }
+      
+      .social-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      
+      .contact-options {
+        flex-direction: column;
+      }
+      
+      .contact-btn {
+        justify-content: center;
+      }
+    }
+    
+    /* Floating animation for decorative elements */
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Particle effect decoration */
+    .particle {
+      position: absolute;
+      background-color: var(--primary);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.5;
+      z-index: -1;
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="glowing-bg"></div>
+  <div class="container">
+    <header>
+      <a href="#" class="logo">
+        <i class="fas fa-code"></i>
+        <span>Portfolio</span>
+      </a>
+    </header>
     
-    <!-- Main Content -->
-    <div class="container mx-auto px-4 py-12 md:py-24 relative">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-            <!-- Profile Section -->
-            <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
-                <div class="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-white/10 shadow-lg">
-                    <img src="https://github.com/Axgoozz.png" alt="Axgoozz GitHub profile foto" class="w-full h-full object-cover" />
-                </div>
-                
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Lyonerzz</h1>
-                <h2 class="text-xl text-primary-300 mb-6">Web Developer & Software engineer</h2>
-                <h3 class="text-xl text-primary-300 mb-6">Mulai ngoding : 23-07-2024</h3>
-                
-                <p class="text-lg mb-8 max-w-md">
-                    saya adalah web developer simple dengan pengetahuan coding sederhana, saat ini saya sedang belajar bahasa pemrogaman python dan javascript.
-                </p>
-                
-                <div class="flex gap-4">
-                    <button onclick="window.open('https://www.tiktok.com/@vxzapaa2?_t=ZS-8yb2NbarAbo&_r=1', '_blank')" class="btn-primary px-6 py-3 rounded-full font-medium flex items-center gap-2">
-                        <i class="fab fa-tiktok"></i> TikTok
-                    </button>
-                    <button onclick="window.open('https://www.instagram.com/ryulzzxv?igsh=MWF5bGNubHVsZHRlcQ%3D%3D&utm_source=qr', '_blank')" class="btn-secondary px-6 py-3 rounded-full font-medium flex items-center gap-2">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Work Showcase -->
-            <div class="flex-1">
-                <div class="card p-8 max-w-lg mx-auto">
-                    <h3 class="text-2xl font-semibold mb-6">Featured Work</h3>
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="rounded-lg overflow-hidden h-32">
-                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f86ddd9b-6bd0-490d-99ea-ba204036efbe.png" alt="Minimalist e-commerce website design with modern ui elements" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="rounded-lg overflow-hidden h-32">
-                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/52797e4f-6bdf-40ce-9028-9b231f0d3a89.png" alt="Dashboard interface with analytics charts and metrics" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="rounded-lg overflow-hidden h-32">
-                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b69d1994-f6e0-4569-8b93-2f25e0183593.png" alt="Mobile app screens showing user profile and social features" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="rounded-lg overflow-hidden h-32">
-                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5c15fa35-a912-40df-95b6-53a7e136038a.png" alt="Creative coding project with interactive particle effects" class="w-full h-full object-cover" />
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="window.open('https://github.com/Axgoozz', '_blank')" class="btn-primary px-6 py-3 rounded-full font-medium flex-1 flex items-center justify-center gap-2">
-                            <i class="fab fa-github"></i> GitHub
-                        </button>
-                        <button onclick="openContactModal()" class="btn-secondary px-6 py-3 rounded-full font-medium flex-1 flex items-center justify-center gap-2">
-                            <i class="fas fa-envelope"></i> Contact Me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="hero">
+      <img src="https://github.com/Axgoozz.png" alt="Axgoozz GitHub profile foto" class="profile-img floating">
+      <h1>Lynerzz</h1>
+      <p class="tagline" id="typing-text"></p>
+      
+      <div class="social-links">
+        <a href="https://tiktok.com/@vxzapaa2" class="social-btn" target="_blank" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://instagram.com/ryulzzvx" class="social-btn" target="_blank" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/Axgoozz" class="social-btn" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="#contact" class="social-btn" title="Contact">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </section>
+    
+    <section class="contact-section" id="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <p>Punya project atau ingin bangun project? ayoo bersama sama!</p>
+      
+      <div class="contact-options">
+        <a href="https://wa.me/6289668593500" class="contact-btn whatsapp-btn">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:danzyyy750@gmail.com" class="contact-btn email-btn">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+    </section>
+    
+    <div class="social-card">
+      <h3 class="social-name">TikTok</h3>
+      <p class="social-desc">bantu follow dongg hehee..</p>
+      <a href="https://tiktok.com/@vxzapaa2" class="visit-btn" target="_blank">
+        Visit Profile <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
     
-    <!-- Contact Modal -->
-    <div id="contactModal" class="modal fixed inset-0 flex items-center justify-center z-50">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeContactModal()"></div>
-        
-        <div class="card p-8 max-w-md w-full relative z-10 mx-4">
-            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-2xl">&times;</button>
-            
-            <h3 class="text-2xl font-semibold mb-6">Contact</h3>
-            <p class="mb-6">mau ngapain? kepoo gw wkwkw</p>
-            
-            <div class="flex flex-col gap-4">
-                <a href="https://wa.me/6289668593500" class="btn-primary px-6 py-3 rounded-full font-medium flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="mailto:danzyyy750@gmail.com" class="btn-secondary px-6 py-3 rounded-full font-medium flex items-center justify-center gap-2">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-            </div>
-        </div>
+    <div class="social-card">
+      <h3 class="social-name">Instagram</h3>
+      <p class="social-desc">bantu follow dongg hehee..</p>
+      <a href="https://instagram.com/ryulzzxv" class="visit-btn" target="_blank">
+        Visit Profile <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
     
-    <!-- Floating decorative elements -->
-    <div class="fixed topNODE_ENV=
-1
-/4 left-1/4 w-16 h-16 rounded-full bg-indigo-500/20 filter blur-xl pointer-events-none floating" style="animation-delay: 0s;"></div>
-    <div class="fixed top-1/3 right-1/4 w-24 h-24 rounded-full bg-emerald-500/20 filter blur-xl pointer-events-none floating" style="animation-delay: 1s;"></div>
-    <div class="fixed bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-indigo-500/20 filter blur-xl pointer-events-none floating" style="animation-delay: 2s;"></div>
-    <div class="fixed bottom-1/3 right-1/3 w-16 h-16 rounded-full bg-emerald-500/20 filter blur-xl pointer-events-none floating" style="animation-delay: 3s;"></div>
-    
-    <script>
-        function openContactModal() {
-            document.getElementById('contactModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    <div class="social-card">
+      <h3 class="social-name">GitHub</h3>
+      <p class="social-desc">mau code nya? ambil aja gapapa hehee..</p>
+      <a href="https://github.com/Axgoozz" class="visit-btn" target="_blank">
+        Visit Profile <i class="fas fa-external-link-alt"></i>
+      </a>
+    </div>
+  </div>
+  
+  <script>
+    // Create floating particles for decoration
+    function createParticles() {
+      const colors = ['#0f0', '#00f7ff', '#ff00ff'];
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
         
-        function closeContactModal() {
-            document.getElementById('contactModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    </script>
+        // Random properties
+        const size = Math.random() * 5 + 3;
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const delay = Math.random() * 5;
+        const duration = 5 + Math.random() * 10;
+        
+        // Apply styles
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}px`;
+        particle.style.top = `${posY}px`;
+        particle.style.backgroundColor = color;
+        particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        document.body.appendChild(particle);
+      }
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    window.addEventListener('load', createParticles);
+    
+    // Social button animation enhancement
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'translateY(-5px) scale(1.1)';
+      });
+      
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  // Typing effect for tagline
+    const text = "Creative Developer & Designer specializing in modern web applications and interactive experiences.";
+    const typingText = document.getElementById('typing-text');
+    let i = 0;
+    
+    function typeWriter() {
+      if (i < text.length) {
+        typingText.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, Math.random() * 50 + 30);
+      } else {
+        // Add blinking cursor
+        typingText.innerHTML += '<span class="blink">|</span>';
+      }
+    }
+    
+    // Start typing effect
+    setTimeout(typeWriter, 1000);
+    
+    // Cursor blinking animation
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .blink {
+        animation: blink 1s step-end infinite;
+        color: var(--primary);
+      }
+      @keyframes blink {
+        from, to { opacity: 1; }
+        50% { opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
+
